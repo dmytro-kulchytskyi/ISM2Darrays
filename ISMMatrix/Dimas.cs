@@ -131,29 +131,158 @@ namespace ISMMatrix
             {
                 for (int j = 0; j < x.GetLength(1) - 1; j++)
                 {
-                    if (Math.Abs(x[i, j]) < 1e-8)
+                    if (Math.Abs(x[i, j]) < 0)
                     {
                         ar[i] = 1;
                     }
                 }
             }
 
-          double sum = 1;
+          double sum = 0;
           for(int i = 0; i< x.GetLength(0);i++)
             for (int j = 0; j < x.GetLength(1); j++)
             {
                 if (ar[i] !=1)
                 {
-                        sum *= x[i, j];
+                        sum += x[i, j];
                 }
             }
             return sum;
         }
 
+        public static double task6(double[,] x)
+        {
+            double res;
+            if (x[0, x.GetLength(1) - 1] > x[x.GetLength(0) - 1, 0]) res = x[0, x.GetLength(1) - 1];
+            else res = x[x.GetLength(0) - 1, 0];
+            int j;
+            double tmp;
+            for (int k = 1; k < x.GetLength(1) - 1; k++)
+            {
+                tmp = 0;
+                for (int i = k; i < x.GetLength(1); i++)
+                {
+                    j = i - k;
+                    tmp += x[j, i];
+                }
+                if (res < tmp) res = tmp;
+            }
+            int q;
+            double tmpp;
+            for (int k = 1; k < x.GetLength(0) - 1; k++)
+            {
+                tmpp = 0;
+                for (int i = k; i < x.GetLength(0); i++)
+                {
+                    q = i - k;
+                    tmpp += x[i, q];
+                }
+                if (res < tmpp) res = tmpp;
+            }
+            return res;
+        }
 
 
+        public static double task8(double[,] x)
+        {
+            double res;
+            if (x[0, x.GetLength(1) - 1] < x[x.GetLength(0) - 1, 0]) res = x[0, x.GetLength(1) - 1];
+            else res = x[x.GetLength(0) - 1, 0];
+            double tmp;
+            int s;
+            for (int k = x.GetLength(1) - 2; k > 0; k--)
+            {
+                tmp = 0;
+                for (int j = k; j > -1; j--)
+                {
+                    s = k - j;
+                    tmp += Math.Abs(x[s, j]);
+                }
+                if (res > tmp) res = tmp;
+            }
+            double tmpp;
+            int q;
+            for (int k = x.GetLength(0) - 2; k > 0; k--)
+            {
+                tmpp = 0;
+                for (int i = k; i > -1; i--)
+                {
+                    q = k - i;
+                    tmpp += Math.Abs(x[i, q]);
+                }
+                if (res > tmpp) res = tmpp;
+            }
 
+            return res;
+        }
 
+        public static double[,] task11(double[,] x)
+        {
+            double det = 1d / Dimas.det(x);
+            double[,] x1 = tr(dop(x));
+            for (int i = 0; i < x1.GetLength(0); i++)
+                for (int j = 0; j < x1.GetLength(1); j++)
+                    x1[i, j] *= det;
+            return x1;
+        }
+
+        public static double[,] tr(double[,] x)
+        {
+            double[,] res = new double[x.GetLength(1), x.GetLength(0)];
+
+            for (int i = 0; i < x.GetLength(0); i++)
+                for (int j = 0; j < x.GetLength(1); j++)
+                    res[j, i] = x[i, j];
+            return res;
+        }
+
+        public static double[,] dop(double[,] x)
+        {
+            double[,] res = new double[x.GetLength(0), x.GetLength(1)];
+
+            for (int i = 0; i < x.GetLength(0); i++)
+                for (int j = 0; j < x.GetLength(1); j++)
+                    res[i, j] = det(submat(x, i, j));
+
+            return res;
+        }
+
+        public static double det(double[,] x)
+        {
+            int ii = x.GetLength(0);
+            int jj = x.GetLength(1);
+            if (ii == 1) return x[0, 0];           
+            double res = 0;
+            for (int j = 0; j < ii; j++)
+            {
+                double[,] sub = submat(x, 0, j);
+                res += Math.Pow(-1, j + 2) * x[0, j] * det(sub);
+            }
+            return res;
+        }
+
+        static double[,] submat(double[,] x, int dli, int dlj)
+        {
+            int size = x.GetLength(0) - 1;
+            double[,] res = new double[size, size];
+            int k = 0, q = 0;
+
+            for (int i = 0; i <= size; i++)
+            {
+                q = 0;
+                if (i == dli) continue;
+                for (int j = 0; j <= x.GetLength(0) - 1; j++)
+                {
+                    if (j != dlj)
+                    {
+                        res[k, q] = x[i, j];
+                        q++;
+                    }
+                }
+                k++;
+            }
+            return res;
+        }
 
     }
 }
