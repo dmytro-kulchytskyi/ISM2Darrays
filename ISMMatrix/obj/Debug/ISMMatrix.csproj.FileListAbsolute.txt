@@ -1,0 +1,6 @@
+C:\Users\Dimasik\Documents\Visual Studio 2015\Projects\ISM2DArrays\ISMMatrix\bin\Debug\ISMMatrix.exe.config
+C:\Users\Dimasik\Documents\Visual Studio 2015\Projects\ISM2DArrays\ISMMatrix\bin\Debug\ISMMatrix.exe
+C:\Users\Dimasik\Documents\Visual Studio 2015\Projects\ISM2DArrays\ISMMatrix\bin\Debug\ISMMatrix.pdb
+C:\Users\Dimasik\Documents\Visual Studio 2015\Projects\ISM2DArrays\ISMMatrix\obj\Debug\ISMMatrix.csprojResolveAssemblyReference.cache
+C:\Users\Dimasik\Documents\Visual Studio 2015\Projects\ISM2DArrays\ISMMatrix\obj\Debug\ISMMatrix.exe
+C:\Users\Dimasik\Documents\Visual Studio 2015\Projects\ISM2DArrays\ISMMatrix\obj\Debug\ISMMatrix.pdb
