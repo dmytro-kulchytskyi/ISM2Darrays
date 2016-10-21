@@ -131,24 +131,82 @@ namespace ISMMatrix
             {
                 for (int j = 0; j < x.GetLength(1) - 1; j++)
                 {
-                    if (Math.Abs(x[i, j]) < 0)
+                    if (x[i, j] < 0)
                     {
                         ar[i] = 1;
                     }
                 }
             }
 
-          double sum = 0;
+          double sum = 1;
           for(int i = 0; i< x.GetLength(0);i++)
             for (int j = 0; j < x.GetLength(1); j++)
             {
                 if (ar[i] !=1)
                 {
-                        sum += x[i, j];
+                        sum *= x[i, j];
                 }
             }
             return sum;
         }
+
+        public static double task9(double[,] x)
+        {
+            int[] ar = new int[x.GetLength(0)];
+
+
+            for (int i = 0; i < x.GetLength(0); i++)
+            {
+                for (int j = 0; j < x.GetLength(1) - 1; j++)
+                {
+                    if (x[i, j] < 0)
+                    {
+                        ar[i] = 1;
+                    }
+                }
+            }
+
+            double sum = 1;
+            for (int i = 0; i < x.GetLength(0); i++)
+                for (int j = 0; j < x.GetLength(1); j++)
+                {
+                    if (ar[i] == 1)
+                    {
+                        sum += x[i, j];
+                    }
+                }
+            return sum;
+        }
+
+        public static double task7(double[,] x)
+        {
+            int[] ar = new int[x.GetLength(0)];
+
+
+            for (int i = 0; i < x.GetLength(0); i++)
+            {
+                for (int j = 0; j < x.GetLength(1) - 1; j++)
+                {
+                    if (x[i, j] < 0)
+                    {
+                        ar[i] = 1;
+                    }
+                }
+            }
+
+            double sum = 1;
+            for (int i = 0; i < x.GetLength(0); i++)
+                for (int j = 0; j < x.GetLength(1); j++)
+                {
+                    if (ar[i] != 1)
+                    {
+                        sum += x[i, j];
+                    }
+                }
+            return sum;
+        }
+
+
 
         public static double task6(double[,] x)
         {
